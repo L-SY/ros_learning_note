@@ -11,3 +11,12 @@
 | mon launch报错：*what():  Could not find node 'subscribe_scan_node' in package 'subscribe_scan'* | 在launch文件中开节点的方法   `<node pkg="pkg_name" type="node_name" name="any"/>`其中`node_name`对应node.cpp中ros::init(argc,argv,"name")中的name.和cpp文件名无关 |
 | 回调函数laserCallback返回值一直为0.45                        | 把min的初始化`double min = msg->range_min;`改为`double min = msg->range_max;`或者一个很大的值。`for (int i = 0; i < msg->ranges.size(); ++i) {     if (msg->ranges[i] < min)         min = msg->ranges[i];`因为后面的代码是不断和初始值比较，（关于为什么一开始最小值为0.45还不清楚，但键盘操控的最小值大约为0.8）所以如果一开始就是一个很小的值就一直不会变. |
 
+## 第二课作业（2022.7.12）
+
+
+
+
+
+| 问题                                                         | 解决方法                                                     |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 在移除原先包，引入一个在原先基础上升级的功能包时报错`CMake Error: The source directory "/home/liuisyang/catkin_ws/src/smb_common/smb_description" does not exist.` | 1.在编译空间catkin clean 再重新built，因为之前旧的软件包时生成的那些中间文件和可执行文件的影响2.设计文件路径的问题，如果不确定的话可以自己跑一遍 |
